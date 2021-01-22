@@ -52,7 +52,11 @@ self.addEventListener('activate', evt => {
 
 // fetch events
 self.addEventListener('fetch', evt => {
-  if(evt.request.url.indexOf('firestore.googleapis.com') === -1){
+  if(evt.request.url.indexOf('firestore.googleapis.com') === -1){ 
+    /* ini di uncomment lagi, tapi ditambah conditional di atas ini
+      kita ga mau nyimpen request an ke firebase ke cache.
+      simpannya di indexed db aja.
+    */
     evt.respondWith(
       caches.match(evt.request).then(cacheRes => {
         return cacheRes || fetch(evt.request).then(fetchRes => {
