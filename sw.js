@@ -22,6 +22,11 @@ const assets = [
       ternyata fungsi bisa dikasih nama. jadi variabel const limitCacheSize bisa diisi fungsi. terus nanti fungsi ini dipanggil di
       bagian fetch
       */
+
+     /*
+    audit refresh: cuma liat lighthouse, terus kan itu masih http belom https. nah kemudian kita akan main di database
+    tentunya dengan menggunakan prinsip secure, makanya jadi https
+     */
 const limitCacheSize = (name, size) => {
   caches.open(name).then(cache => {
     cache.keys().then(keys => {
