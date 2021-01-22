@@ -40,6 +40,14 @@ self.addEventListener('activate', evt => {
 });
 
 // fetch event
+
+        /*
+        di sini kita gamau kalau load sebuah image akan ke fallback.html . maka di beri conditional
+        disini hanya akan ada conditional if request merupakan html.
+        jika load image kita bisa ngasih dummy image dan ngasih tau kalau harus online dulu.
+        untuk offline strategy ada di link ini
+        https://web.dev/offline-cookbook/
+        */
 self.addEventListener('fetch', evt => {
   //console.log('fetch event', evt);
   evt.respondWith(
@@ -51,7 +59,7 @@ self.addEventListener('fetch', evt => {
         })
       });
     }).catch(() => {
-      if(evt.request.url.indexOf('.html') > -1){
+      if(evt.request.url.indexOf('.html') > -1){  // akan mereturn jika dia file html atau bukan. parse string. kalau gaada .html akan return -1
         return caches.match('/pages/fallback.html');
       } 
     })
