@@ -23,18 +23,24 @@ db.collection('recipes').onSnapshot(snapshot => {
 });
 
 // add new recipe
+
+          /*
+            ini buat nambah recipe cuma pake code di bawah ini doang.
+            bener bener simple. ga ada ribet2 di hubungan index db dengan fire store
+            firestore udah mengatasi hal ini dgn library nya tadi.
+          */
 const form = document.querySelector('form');
 form.addEventListener('submit', evt => {
-  evt.preventDefault();
+  evt.preventDefault(); // ini supaya ga berlaku default (refresh ketika submit)
   
   const recipe = {
     name: form.title.value,
     ingredients: form.ingredients.value
   };
 
-  db.collection('recipes').add(recipe)
+  db.collection('recipes').add(recipe) // nambah di table recipes
     .catch(err => console.log(err));
 
-  form.title.value = '';
+  form.title.value = ''; // ini buat supaya abis submit form, value di form nya ilang.
   form.ingredients.value = '';
 });
