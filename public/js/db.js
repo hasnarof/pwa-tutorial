@@ -16,7 +16,7 @@ db.collection('recipes').onSnapshot(snapshot => {
     if(change.type === 'added'){
       renderRecipe(change.doc.data(), change.doc.id);
     }
-    if(change.type === 'removed'){
+    if(change.type === 'removed'){ // ini juga penting supaya real time terhapus dari ui nya.
       removeRecipe(change.doc.id);
     }
   });
@@ -35,16 +35,20 @@ form.addEventListener('submit', evt => {
   db.collection('recipes').add(recipe)
     .catch(err => console.log(err));
 
-  form.title.value = '';
+  form.title.value = ''; // masih perlu dipahami kenapa form dot title dot value
   form.ingredients.value = '';
 });
 
 // remove a recipe
 const recipeContainer = document.querySelector('.recipes');
 recipeContainer.addEventListener('click', evt => {
-  if(evt.target.tagName === 'I'){
+  if(evt.target.tagName === 'I'){ // bisa dilihat di console, tagName tag i (icon tong sampah) adalah I
     const id = evt.target.getAttribute('data-id');
     //console.log(id);
     db.collection('recipes').doc(id).delete();
   }
 })
+
+/* oh iya ini juga tentang deploy, jadi abis ada command firebase deploy, yg di deploy itu bakal ada di dalam folder
+  public (kita mesti mindahin juga). ada file firebase juga tapi ga perlu kita pedulikan.
+*/

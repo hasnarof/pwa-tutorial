@@ -28,8 +28,8 @@ const renderRecipe = (data, id) => {
 
 };
 
-// remove recipe
+// remove recipe // ini adalah supaya terhapus di tampilan app nya.
 const removeRecipe = (id) => {
-  const recipe = document.querySelector(`.recipe[data-id=${id}]`);
+  const recipe = document.querySelector(`.recipe[data-id=${id}]`); // ini pake backtick supaya bisa naruh $
   recipe.remove();
 };
