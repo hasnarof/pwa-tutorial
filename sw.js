@@ -39,13 +39,17 @@ self.addEventListener('activate', evt => {
 });
 
 // fetch event
+
+        /*
+        dynamic caching
+        */
 self.addEventListener('fetch', evt => {
   //console.log('fetch event', evt);
   evt.respondWith(
     caches.match(evt.request).then(cacheRes => {
-      return cacheRes || fetch(evt.request).then(fetchRes => {
-        return caches.open(dynamicCacheName).then(cache => {
-          cache.put(evt.request.url, fetchRes.clone());
+      return cacheRes || fetch(evt.request).then(fetchRes => { // jika tidak ada di daftar cache, maka fetch request
+        return caches.open(dynamicCacheName).then(cache => { // dan simpan di dynamicCacheName
+          cache.put(evt.request.url, fetchRes.clone()); // simpan url nya dan respon dari request di cache, clone karena perlu di return retchRes asli.
           return fetchRes;
         })
       });
