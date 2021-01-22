@@ -1,4 +1,6 @@
-const recipes = document.querySelector('.recipes');
+/* Displaying data to UI */
+
+const recipes = document.querySelector('.recipes'); // select div wrapper recipes.
 
 document.addEventListener('DOMContentLoaded', function() {
   // nav menu
@@ -10,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // render recipe data
+            /* liat db.js , ada fungsi renderRecipe dipanggil */
 const renderRecipe = (data, id) => {
 
   const html = `
@@ -24,6 +27,6 @@ const renderRecipe = (data, id) => {
       </div>
     </div>
   `;
-  recipes.innerHTML += html;
+  recipes.innerHTML += html; // untuk menambah di div wrapper recipes
 
 };
