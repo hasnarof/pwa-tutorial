@@ -27,7 +27,7 @@ db.collection('recipes').onSnapshot(snapshot => {
           /*
             ini buat nambah recipe cuma pake code di bawah ini doang.
             bener bener simple. ga ada ribet2 di hubungan index db dengan fire store
-            firestore udah mengatasi hal ini dgn library nya tadi.
+            firestore udah mengatasi hal ini dgn library nya tadi yang enable persistence
           */
 const form = document.querySelector('form');
 form.addEventListener('submit', evt => {
