@@ -40,16 +40,21 @@ self.addEventListener('activate', evt => {
 });
 
 // fetch event
+
+      /*
+      kalau ada suatu saat dimana sudah offline tapi belum pernah kunjungi page yg dynamic caching, mending kita kasih
+      suatu page dari static cache yang menampilkan pesan error. ada di /pages/fallback.html
+      */
 self.addEventListener('fetch', evt => {
   //console.log('fetch event', evt);
   evt.respondWith(
     caches.match(evt.request).then(cacheRes => {
-      return cacheRes || fetch(evt.request).then(fetchRes => {
+      return cacheRes || fetch(evt.request).then(fetchRes => { // kalau nemu halaman yg gaada di cache saat offline, error kan tuh
         return caches.open(dynamicCacheName).then(cache => {
           cache.put(evt.request.url, fetchRes.clone());
           return fetchRes;
         })
       });
-    }).catch(() => caches.match('/pages/fallback.html'))
+    }).catch(() => caches.match('/pages/fallback.html'))  // di catch di sini, return halaman fallback
   );
 });
