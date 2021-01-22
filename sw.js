@@ -15,11 +15,18 @@ const assets = [
 ];
 
 // cache size limit function
+
+      /* limiting size dari dynamic cache
+      kalo kebanyakan cache nya, nanti bisa bloat.
+
+      ternyata fungsi bisa dikasih nama. jadi variabel const limitCacheSize bisa diisi fungsi. terus nanti fungsi ini dipanggil di
+      bagian fetch
+      */
 const limitCacheSize = (name, size) => {
   caches.open(name).then(cache => {
     cache.keys().then(keys => {
       if(keys.length > size){
-        cache.delete(keys[0]).then(limitCacheSize(name, size));
+        cache.delete(keys[0]).then(limitCacheSize(name, size)); // biar di cek lagi kalo masih banyak cache > size.
       }
     });
   });
