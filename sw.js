@@ -12,6 +12,14 @@ const assets = [
   'https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2'
 ];
 
+  /*
+    tentang function arrow, 
+    self.addEventListener('install', evt => {})
+      jadi ini artinya ada fungsi yang dipanggil (callback) dengan argumen evt, untuk dipakai di fungsi di dalam {}
+
+      jika terdengar install, maka callback .... fungsi tanpa nama itu dengan argumen evt
+  */
+
 // install event
 self.addEventListener('install', evt => {
   //console.log('service worker installed');
