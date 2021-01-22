@@ -13,6 +13,11 @@ const assets = [
 ];
 
 // install event
+
+        /* #2
+        jika kita mau merubah sw, saat kita change dan save, install ini akan terpanggil. jadi misal kalau kita mau nambah precaching,
+        kita harus online dulu, refresh, udah deh (karena otomatis terinstall, dia mendeteksi ada perubahan sw)
+        */ 
 self.addEventListener('install', evt => {
   //console.log('service worker installed');
   evt.waitUntil(
@@ -29,6 +34,14 @@ self.addEventListener('activate', evt => {
 });
 
 // fetch event
+
+        /* #1
+        jadi di sini itu saat nge mendengar fetch, event diisi dengan (merespon dengan) mengecek jika ada request yang match dengan
+        pre caching nya, jika ada return cacheRes (ini isinya udah merupakan isi dari request cache (misal request index, isi nya adalah sc index.html)).
+        jika belum ada di precaching, maka akan nge fetch request biasa.
+
+        kemudian lihat ke install
+        */ 
 self.addEventListener('fetch', evt => {
   //console.log('fetch event', evt);
   evt.respondWith(
