@@ -12,6 +12,12 @@ const assets = [
   'https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2'
 ];
 
+        /* #3 Life Cycle Service Worker
+        di install dulu, tiap sw berubah maka install akan ter fire / ter ignite
+        lalu ada antriannya untuk activate ( di google dev tools), jadi yg lama masih dipakai, yg baru silakan kita activate
+        jadi deh
+        */ 
+
 // install event
 
         /* #2
